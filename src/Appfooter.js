@@ -7,9 +7,9 @@ export default function Appfooter() {
       <footer>
         Coded by <a href="https://github.com/Dimpo1">Dimpo Phiri</a>, the code
         is open-sourced on{" "}
-        <a href="https://github.com/Dimpo1/My-Weather-App">GitHub</a> and the
+        <a href="https://github.com/Dimpo1/react-weather-app">GitHub</a> and the
         website is hosted on{" "}
-        <a href="https://dimpos-weather-app.netlify.app/">Netlify</a>.
+        <a href="https://dp-react-weatherapp.netlify.app/">Netlify</a>.
       </footer>
     </div>
   );
