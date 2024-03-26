@@ -1,24 +1,16 @@
 import React from "react";
+import Header from "./Header";
+import Main from "./Main";
+import Appfooter from "./Appfooter";
+
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          This is where my weather application will be. 😊
-          <br />
-          Stay tuned! ⏳⏳⏳
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <h5>
-            <a href="https://github.com/Dimpo1/react-weather-app"> Github</a>
-          </h5>
-        </p>
-      </header>
+      <Header />
+      <Main />
+      <Appfooter />
     </div>
   );
 }
