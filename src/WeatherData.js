@@ -1,80 +1,49 @@
-import React, { useState } from "react";
-import axios from "axios";
-import Header from "./Header";
+import React from "react";
 import FormattedDate from "./formattedDate";
 
 export default function WeatherData(props) {
-  let [ready, setReady] = useState(false);
-  let [temperatureData, setTemperatureData] = useState({});
+  return (
+    <div className="container">
+      <div className="WeatherData">
+        <div className="row">
+          <div className="col-8">
+            <div id="city">{props.data.city}</div>
+            <p>
+              <span id="dateTime">
+                {" "}
+                <FormattedDate date={props.data.date} />
+              </span>{" "}
+              |
+              <span className="text-capitalize" id="description">
+                {" "}
+                {props.data.description}{" "}
+              </span>
+              <br />
+              Humidity:{" "}
+              <strong>
+                <span id="humidity">{props.data.humidity}</span>%
+              </strong>{" "}
+              | Wind:{" "}
+              <strong>
+                <span id="windSpeed">{props.data.wind}</span> km/h
+              </strong>
+            </p>
+          </div>
 
-  function handleresponse(response) {
-    console.log(response.data.dt);
-    setTemperatureData({
-      temperature: response.data.main.temp,
-      humidity: response.data.main.humidity,
-      wind: response.data.wind.speed,
-      city: response.data.name,
-      description: response.data.weather[0].description,
-      icon: response.data.weather.icon,
-      date: new Date(response.data.dt * 1000),
-    });
-    setReady(true);
-  }
-
-  if (ready) {
-    return (
-      <div className="container">
-        <div className="WeatherData">
-          <div className="row">
-            <div className="col-8">
-              <div id="city">{temperatureData.city}</div>
-              <p>
-                <span id="dateTime">
-                  {" "}
-                  <FormattedDate date={temperatureData.date} />
-                </span>{" "}
-                |
-                <span className="text-capitalize" id="description">
-                  {" "}
-                  {temperatureData.description}{" "}
-                </span>
-                <br />
-                Humidity:{" "}
-                <strong>
-                  <span id="humidity">{temperatureData.humidity}</span>%
-                </strong>{" "}
-                | Wind:{" "}
-                <strong>
-                  <span id="windSpeed">{temperatureData.wind}</span> km/h
-                </strong>
-              </p>
-            </div>
-
-            <div className="col-4">
-              <div id="currentTemperature">
-                <div id="icon">
-                  <img
-                    src={temperatureData.icon}
-                    alt={temperatureData.description}
-                  />
-                </div>
-
-                <div className="temp" id="temp">
-                  <strong>{Math.round(temperatureData.temperature)}</strong>
-                </div>
-                <div className="unit">°C</div>
+          <div className="col-4">
+            <div id="currentTemperature">
+              <div id="icon">
+                <img src={props.data.icon} alt={props.data.description} />
               </div>
+
+              <div className="temp" id="temp">
+                <strong>{Math.round(props.data.temperature)}</strong>
+              </div>
+              <div className="unit">°C</div>
             </div>
           </div>
         </div>
       </div>
-    );
-  } else {
-    let apikey = "5aac6d0188c6f17d6d2bbe6591b6fef0";
-    let city = "Paris";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
-    axios.get(url).then(handleresponse);
-
-    return "Loading...";
-  }
+    </div>
+  );
 }
