@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import WeatherData from "./WeatherData";
 
-export default function Header() {
+export default function Header(props) {
   let [ready, setReady] = useState(false);
   let [temperatureData, setTemperatureData] = useState({});
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleresponse(response) {
     console.log(response.data.dt);
@@ -19,32 +20,50 @@ export default function Header() {
     });
     setReady(true);
   }
+
+  function search() {
+    let apikey = "5aac6d0188c6f17d6d2bbe6591b6fef0";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
+    axios.get(url).then(handleresponse);
+  }
+
+  function handeSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handeCityChange(event) {
+    setCity(event.target.value);
+  }
+
   if (ready) {
     return (
-      <div>
-        <header>
-          <form id="searchForm">
-            <input
-              type="search"
-              name="city"
-              id="citySearch"
-              placeholder="Enter a city..."
-              className="searchInput"
-              autoFocus="on"
-              required
-            />
-            <input type="submit" value="Search" className="search" />
-          </form>
-        </header>
-        <WeatherData data={temperatureData} />; {/* changed 'info' to 'data' */}
+      <div className="MainContent">
+        <div>
+          <header>
+            <form onSubmit={handeSubmit} id="searchForm">
+              <input
+                type="search"
+                name="city"
+                id="citySearch"
+                placeholder="Enter a city..."
+                className="searchInput"
+                autoFocus="on"
+                onChange={handeCityChange}
+                required
+              />
+              <input type="submit" value="Search" className="search" />
+            </form>
+          </header>
+        </div>
+        <div>
+          <WeatherData data={temperatureData} />;{" "}
+          {/* changed 'info' to 'data' */}
+        </div>
       </div>
     );
   } else {
-    let apikey = "5aac6d0188c6f17d6d2bbe6591b6fef0";
-    let city = "Paris";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
-    axios.get(url).then(handleresponse);
-
+    search();
     return "Loading...";
   }
 }

@@ -6,7 +6,7 @@ export default function WeatherData(props) {
     <div className="container">
       <div className="WeatherData">
         <div className="row">
-          <div className="col-8">
+          <div className="col-9 text-start">
             <div id="city">{props.data.city}</div>
             <p>
               <span id="dateTime">
@@ -30,7 +30,7 @@ export default function WeatherData(props) {
             </p>
           </div>
 
-          <div className="col-4">
+          <div className="col-3 text-center">
             <div id="currentTemperature">
               <div id="icon">
                 <img src={props.data.icon} alt={props.data.description} />

@@ -5,7 +5,7 @@ import Appforecast from "./Appforecast";
 export default function Main() {
   return (
     <main>
-      <WeatherData />
+      <WeatherData defaultCity="Paris" />
       <Appforecast />
     </main>
   );
