@@ -101,8 +101,10 @@ p strong {
 }
 
 .unit {
-  margin-top: 10px;
-  font-size: 30px;
+  position: relative;
+  top: -30px;
+  font-size: 20px;
+  color: #000;
 }
 
 .weather-forecast {
