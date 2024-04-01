@@ -5,8 +5,8 @@ export default function Appfooter() {
     <div className="Appfooter">
       {" "}
       <footer>
-        Coded by <a href="https://github.com/Dimpo1">Dimpo Phiri</a>, the code
-        is open-sourced on{" "}
+        Coded by <a href="https://github.com/Dimpo1">Dimpo Phiri</a>, the
+        project is open-sourced on{" "}
         <a href="https://github.com/Dimpo1/react-weather-app">GitHub</a> and the
         website is hosted on{" "}
         <a href="https://dp-react-weatherapp.netlify.app/">Netlify</a>.
