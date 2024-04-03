@@ -57,7 +57,7 @@ export default function Header(props) {
           </header>
         </div>
         <div>
-          <WeatherData data={temperatureData} />;{" "}
+          <WeatherData data={temperatureData} />{" "}
           {/* changed 'info' to 'data' */}
         </div>
       </div>
